@@ -16,6 +16,6 @@
 		"emitDecoratorMetadata": true,
 		"sourceMap": false
 	},
-	"include": ["**/*.ts"],
+	"include": ["**/*.ts", "src/controllers/questions.js"],
 	"exclude": ["node_modules", "dist", "**/*.test.ts", "**/*.spec.ts"]
 }
