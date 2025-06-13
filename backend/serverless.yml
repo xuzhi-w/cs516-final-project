@@ -2,7 +2,7 @@ service: quiz-app-backend
 
 provider:
   name: aws
-  runtime: nodejs22.x
+  runtime: nodejs20.x
   region: us-east-1
   stage: ${opt:stage, 'dev'}
   memorySize: 256
@@ -30,7 +30,7 @@ plugins:
 
 custom:
   serverless-offline:
-    httpPort: 8000
+    httpPort: 3000
     host: 0.0.0.0
 
 package:
