@@ -1,9 +1,9 @@
 import express, { Request, Response } from "express";
 import bodyParser from "body-parser";
 import serverless from "serverless-http";
-import { questionRoutes } from "./src/routes/questions.js";
-import { topicRoutes } from "./src/routes/topics.js";
-import { leaderBoardRoutes } from "./src/routes/leaderboard.js";
+import { questionRoutes } from "./src/routes/questions";
+import { topicRoutes } from "./src/routes/topics";
+import { leaderBoardRoutes } from "./src/routes/leaderboard";
 
 const app = express();
 
