@@ -1,0 +1,44 @@
+service: quiz-app-backend
+
+provider:
+  name: aws
+  runtime: nodejs22.x
+  region: us-east-1
+  stage: ${opt:stage, 'dev'}
+  memorySize: 256
+  timeout: 30
+  environment:
+    NODE_ENV: production
+    MONGODB_URI: ${env:MONGODB_URI, ''}
+    JWT_SECRET: ${env:JWT_SECRET, 'default-secret-change-in-production'}
+
+functions:
+  api:
+    handler: dist/index.handler
+    events:
+      - http:
+          path: /{proxy+}
+          method: any
+          cors: true
+      - http:
+          path: /
+          method: any
+          cors: true
+
+plugins:
+  - serverless-offline
+
+custom:
+  serverless-offline:
+    httpPort: 8000
+    host: 0.0.0.0
+
+package:
+  patterns:
+    - '!node_modules/**'
+    - '!src/**'
+    - '!*.ts'
+    - '!tsconfig.json'
+    - 'dist/**'
+    - 'node_modules/**'
+  individually: false
