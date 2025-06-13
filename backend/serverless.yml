@@ -10,7 +10,7 @@ provider:
   environment:
     NODE_ENV: production
     MONGODB_URI: ${env:MONGODB_URI, ''}
-    JWT_SECRET: ${env:JWT_SECRET, 'default-secret-change-in-production'}
+    JWT_SECRET: ${env:JWT_SECRET, '2Ekum8Jhei8eTbM0XAx8zJdEdkJ5g'}
 
 functions:
   api:
