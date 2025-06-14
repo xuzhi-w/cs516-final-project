@@ -61,7 +61,7 @@ const TopicSelection: React.FC<TopicSelectionProps> = ({ topics, onTopicSelect }
                         className="group cursor-pointer"
                         onClick={() => onTopicSelect(topic)}
                     >
-                        <div className={`bg-gradient-to-r ${getTopicColor(topic.id)} rounded-2xl p-6 text-white transform transition-all duration-200 hover:scale-110 hover:shadow-2xl hover:rotate-1`}>
+                        <div className={`bg-gradient-to-r ${getTopicColor(topic.id)} rounded-2xl p-6 text-white transform transition-all ease-in duration-100 hover:scale-110 hover:shadow-2xl hover:rotate-1`}>
                             <div className="flex items-center justify-center mb-4">
                                 <div className="bg-white/30 rounded-full p-4 backdrop-blur-sm">
                                     {getTopicIcon(topic.id)}
