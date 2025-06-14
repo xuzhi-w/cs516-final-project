@@ -3,7 +3,8 @@ import bodyParser from "body-parser";
 import serverless from "serverless-http";
 import { questionRoutes } from "./src/routes/questions";
 import { topicRoutes } from "./src/routes/topics";
-import { leaderBoardRoutes } from "./src/routes/leaderboard";
+import leaderboardRoutes from './src/routes/leaderboard';
+
 
 const app = express();
 
@@ -27,17 +28,17 @@ app.use((req, res, next) => {
   }
 });
 
+
 app.get("/", (req: Request, res: Response) => {
   res.json({ message: "okay" });
 });
 
 app.use("/questions", questionRoutes);
 app.use("/topics", topicRoutes);
-app.use("/leaderboard", leaderBoardRoutes);
+app.use("/leaderboard", leaderboardRoutes);  // Fixed variable name
 
 // Health check route
 app.get("/health", (req: Request, res: Response) => {
-  console.log("health");
   res.json({ status: "healthy", timestamp: new Date().toISOString() });
 });
 

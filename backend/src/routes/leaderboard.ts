@@ -1,7 +1,17 @@
-import { Router } from "express";
-import { createLeaderboard, getLeaderboard } from "../controllers/leaderboard";
 
-export const leaderBoardRoutes = Router();
+import express from "express";
+import { 
+  createLeaderboardEntryController, 
+  getLeaderboardController 
+} from "../controllers/leaderboard";
 
-leaderBoardRoutes.post("/", createLeaderboard);
-leaderBoardRoutes.get("/", getLeaderboard);
+
+const router = express.Router();
+
+// POST /leaderboard - Create new entry
+router.post("/", createLeaderboardEntryController);
+
+// GET /leaderboard - Get all entries (optionally filtered by topicId)
+router.get("/", getLeaderboardController);
+
+export default router;
