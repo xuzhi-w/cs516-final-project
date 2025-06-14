@@ -24,3 +24,19 @@ export type Leaderboard = {
 	score: number;
 	duration: number;
 };
+
+export type MathQuestion = {
+	id: string;
+	left: number;
+	right: number;
+	action: "addition" | "subtraction" | "multiplication" | "division";
+	answer: number;
+	questionText: string;
+};
+
+export type MathQuizSession = {
+	questions: MathQuestion[];
+	currentQuestionIndex: number;
+	userAnswers: (number | null)[];
+	startTime: number;
+};

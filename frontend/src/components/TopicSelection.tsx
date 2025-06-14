@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Topic } from '@/model/user';
-import { BookOpenIcon, GlobeIcon, BeakerIcon, ScrollIcon } from 'lucide-react';
+import { BookOpenIcon, GlobeIcon, BeakerIcon, ScrollIcon, Calculator } from 'lucide-react';
 
 interface TopicSelectionProps {
     topics: Topic[];
@@ -18,6 +18,8 @@ const getTopicIcon = (topicId: string) => {
             return <BeakerIcon className="w-8 h-8" />;
         case 'world_history':
             return <ScrollIcon className="w-8 h-8" />;
+        case 'math':
+            return <Calculator className="w-8 h-8" />;
         default:
             return <BookOpenIcon className="w-8 h-8" />;
     }
@@ -33,6 +35,8 @@ const getTopicColor = (topicId: string) => {
             return 'from-purple-400 to-indigo-500';
         case 'world_history':
             return 'from-orange-400 to-red-500';
+        case 'math':
+            return 'from-pink-400 to-rose-500';
         default:
             return 'from-gray-400 to-gray-600';
     }

@@ -66,7 +66,6 @@ const LeaderboardPage: React.FC = () => {
                         onClick={() => navigate('/')}
                         className="flex items-center gap-2 bg-purple-100 hover:bg-purple-200 text-purple-700 border-purple-300 font-bold rounded-full px-6 py-3 transition-all duration-200 hover:scale-105"
                     >
-                        <ArrowLeft className="w-5 h-5" />
                         🏠 Back to Home
                     </Button>
                     <h1 className="text-4xl font-bold text-purple-700">🏆 Hall of Fame 🏆</h1>
@@ -77,7 +76,6 @@ const LeaderboardPage: React.FC = () => {
             <Card className="border-4 border-yellow-300 bg-gradient-to-r from-yellow-50 to-orange-50">
                 <CardHeader>
                     <CardTitle className="flex items-center gap-2 text-purple-700">
-                        <Filter className="w-6 h-6" />
                         🎯 Filter by Topic
                     </CardTitle>
                 </CardHeader>

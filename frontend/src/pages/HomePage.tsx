@@ -9,7 +9,11 @@ const HomePage: React.FC = () => {
     const navigate = useNavigate();
 
     const handleTopicSelect = (topic: Topic) => {
-        navigate(`/quiz/${topic.id}`);
+        if (topic.id === 'math') {
+            navigate('/quiz/math');
+        } else {
+            navigate(`/quiz/${topic.id}`);
+        }
     };
 
     return (

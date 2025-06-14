@@ -18,6 +18,7 @@ export const topics: Topic[] = [
 	{ id: "geography", name: "Geography" },
 	{ id: "science", name: "Science" },
 	{ id: "world_history", name: "World History" },
+	{ id: "math", name: "Math Sprint" },
 ];
 
 // Dummy Users
@@ -185,6 +186,43 @@ export const leaderboard: Leaderboard[] = [
 		score: 70,
 		duration: 275000,
 	}, // 4.58 minutes
+
+	// Math Sprint scores
+	{
+		id: "lb_021",
+		userId: "user_004",
+		topicId: "math",
+		score: 95,
+		duration: 320000,
+	}, // 5.33 minutes
+	{
+		id: "lb_022",
+		userId: "user_001",
+		topicId: "math",
+		score: 90,
+		duration: 285000,
+	}, // 4.75 minutes
+	{
+		id: "lb_023",
+		userId: "user_002",
+		topicId: "math",
+		score: 85,
+		duration: 310000,
+	}, // 5.17 minutes
+	{
+		id: "lb_024",
+		userId: "user_003",
+		topicId: "math",
+		score: 80,
+		duration: 345000,
+	}, // 5.75 minutes
+	{
+		id: "lb_025",
+		userId: "user_001",
+		topicId: "math",
+		score: 75,
+		duration: 380000,
+	}, // 6.33 minutes
 ];
 
 // Export all data
