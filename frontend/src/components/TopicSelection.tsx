@@ -41,12 +41,14 @@ const getTopicColor = (topicId: string) => {
 const TopicSelection: React.FC<TopicSelectionProps> = ({ topics, onTopicSelect }) => {
     return (
         <div className="bg-white rounded-lg shadow-lg p-8">
-            <h2 className="text-2xl font-bold text-center mb-6 text-gray-800">
-                Choose Your Quiz Topic
-            </h2>
-            <p className="text-center text-gray-600 mb-8">
-                Select a topic to start your quiz. Each quiz contains 10 questions.
-            </p>
+            <div className="mb-6">
+                <h2 className="text-2xl font-bold text-center mb-2 text-gray-800">
+                    Choose Your Quiz Topic
+                </h2>
+                <p className="text-center text-gray-600">
+                    Select a topic to start your quiz. Each quiz contains 10 questions.
+                </p>
+            </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {topics.map((topic) => (

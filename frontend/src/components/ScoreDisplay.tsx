@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router';
 import { Button } from '@/components/ui/button';
 import { QuizResult } from './QuizApp';
-import { TrophyIcon, ClockIcon, CheckCircleIcon, XCircleIcon, RotateCcwIcon, PlusIcon } from 'lucide-react';
+import { TrophyIcon, ClockIcon, CheckCircleIcon, XCircleIcon, RotateCcwIcon, PlusIcon, SaveIcon } from 'lucide-react';
+import { addLeaderboardEntry, getCurrentUser } from '@/data';
 
 interface ScoreDisplayProps {
     result: QuizResult;
@@ -10,6 +12,10 @@ interface ScoreDisplayProps {
 }
 
 const ScoreDisplay: React.FC<ScoreDisplayProps> = ({ result, onRestart, onNewQuiz }) => {
+    const navigate = useNavigate();
+    const [isSaved, setIsSaved] = useState(false);
+    const [saving, setSaving] = useState(false);
+
     const formatTime = (ms: number) => {
         const seconds = Math.floor(ms / 1000);
         const minutes = Math.floor(seconds / 60);
@@ -37,6 +43,29 @@ const ScoreDisplay: React.FC<ScoreDisplayProps> = ({ result, onRestart, onNewQui
         if (score >= 70) return '👍';
         if (score >= 60) return '🙂';
         return '📚';
+    };
+
+    const handleSaveToLeaderboard = async () => {
+        if (isSaved) return;
+
+        setSaving(true);
+        try {
+            const currentUser = getCurrentUser();
+            await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate API call
+
+            addLeaderboardEntry({
+                userId: currentUser.id,
+                topicId: result.topicId,
+                score: result.score,
+                duration: result.duration
+            });
+
+            setIsSaved(true);
+        } catch (error) {
+            console.error('Failed to save to leaderboard:', error);
+        } finally {
+            setSaving(false);
+        }
     };
 
     return (
@@ -119,6 +148,33 @@ const ScoreDisplay: React.FC<ScoreDisplayProps> = ({ result, onRestart, onNewQui
 
             {/* Action Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                {!isSaved && (
+                    <Button
+                        onClick={handleSaveToLeaderboard}
+                        disabled={saving}
+                        className="flex items-center gap-2 bg-green-600 hover:bg-green-700"
+                    >
+                        <SaveIcon className="w-4 h-4" />
+                        {saving ? 'Saving...' : 'Save to Leaderboard'}
+                    </Button>
+                )}
+
+                {isSaved && (
+                    <div className="flex items-center gap-2 text-green-600 font-medium mb-4">
+                        <CheckCircleIcon className="w-5 h-5" />
+                        <span>Saved to Leaderboard!</span>
+                    </div>
+                )}
+
+                <Button
+                    onClick={() => navigate('/leaderboard')}
+                    variant="outline"
+                    className="flex items-center gap-2 bg-blue-50 hover:bg-blue-100 text-blue-700 border-blue-200"
+                >
+                    <TrophyIcon className="w-4 h-4" />
+                    View Leaderboard
+                </Button>
+
                 <Button
                     onClick={onRestart}
                     variant="outline"

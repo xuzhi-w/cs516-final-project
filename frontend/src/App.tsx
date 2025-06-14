@@ -2,6 +2,7 @@ import React from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router'
 import HomePage from './pages/HomePage'
 import QuizPage from './pages/QuizPage'
+import LeaderboardPage from './pages/LeaderboardPage'
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/quiz/:topicId" element={<QuizPage />} />
+            <Route path="/leaderboard" element={<LeaderboardPage />} />
           </Routes>
         </div>
       </div>
