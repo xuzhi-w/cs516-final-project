@@ -5,6 +5,7 @@ import { questionRoutes } from "./src/routes/questions";
 import { topicRoutes } from "./src/routes/topics";
 import leaderboardRoutes from './src/routes/leaderboard';
 
+
 const app = express();
 
 // Middleware
@@ -27,7 +28,11 @@ app.use((req, res, next) => {
   }
 });
 
-// Route modules
+
+app.get("/", (req: Request, res: Response) => {
+  res.json({ message: "okay" });
+});
+
 app.use("/questions", questionRoutes);
 app.use("/topics", topicRoutes);
 app.use("/leaderboard", leaderboardRoutes);  // Fixed variable name

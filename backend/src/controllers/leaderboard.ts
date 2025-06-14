@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import { Request, Response } from "express"
 import { createLeaderboardEntry, getLeaderboardEntries } from "../mode/leaderboard";
 
 export const createLeaderboardEntryController = async (req: Request, res: Response) => {
