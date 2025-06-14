@@ -29,13 +29,13 @@ const LeaderboardPage: React.FC = () => {
     const getRankIcon = (rank: number) => {
         switch (rank) {
             case 1:
-                return <Trophy className="w-6 h-6 text-yellow-500" />;
+                return <Trophy className="w-8 h-8 text-yellow-500" />;
             case 2:
-                return <Medal className="w-6 h-6 text-gray-400" />;
+                return <Medal className="w-8 h-8 text-gray-400" />;
             case 3:
-                return <Award className="w-6 h-6 text-amber-600" />;
+                return <Award className="w-8 h-8 text-amber-600" />;
             default:
-                return <span className="w-6 h-6 flex items-center justify-center text-gray-600 font-bold">{rank}</span>;
+                return <span className="w-8 h-8 flex items-center justify-center text-white font-bold text-lg bg-gradient-to-r from-purple-400 to-pink-500 rounded-full">{rank}</span>;
         }
     };
 
@@ -60,25 +60,25 @@ const LeaderboardPage: React.FC = () => {
     return (
         <div className="space-y-6">
             <div className="flex items-center justify-between">
-                <div className="flex items-center gap-4">
+                <div className="flex flex-col justify-center w-full items-center gap-4">
                     <Button
                         variant="outline"
                         onClick={() => navigate('/')}
-                        className="flex items-center gap-2"
+                        className="flex items-center gap-2 bg-purple-100 hover:bg-purple-200 text-purple-700 border-purple-300 font-bold rounded-full px-6 py-3 transition-all duration-200 hover:scale-105"
                     >
-                        <ArrowLeft className="w-4 h-4" />
-                        Back to Home
+                        <ArrowLeft className="w-5 h-5" />
+                        🏠 Back to Home
                     </Button>
-                    <h1 className="text-3xl font-bold text-gray-800">Leaderboard</h1>
+                    <h1 className="text-4xl font-bold text-purple-700">🏆 Hall of Fame 🏆</h1>
                 </div>
             </div>
 
             {/* Topic Filter */}
-            <Card>
+            <Card className="border-4 border-yellow-300 bg-gradient-to-r from-yellow-50 to-orange-50">
                 <CardHeader>
-                    <CardTitle className="flex items-center gap-2">
-                        <Filter className="w-5 h-5" />
-                        Filter by Topic
+                    <CardTitle className="flex items-center gap-2 text-purple-700">
+                        <Filter className="w-6 h-6" />
+                        🎯 Filter by Topic
                     </CardTitle>
                 </CardHeader>
                 <CardContent>
@@ -87,8 +87,12 @@ const LeaderboardPage: React.FC = () => {
                             variant={selectedTopicId === 'all' ? 'default' : 'outline'}
                             onClick={() => setSelectedTopicId('all')}
                             size="sm"
+                            className={`font-bold rounded-full transition-all duration-200 hover:scale-105 ${selectedTopicId === 'all'
+                                ? 'bg-gradient-to-r from-purple-400 to-pink-500 text-white'
+                                : 'bg-white border-purple-300 text-purple-600 hover:bg-purple-50'
+                                }`}
                         >
-                            All Topics
+                            🌟 All Topics
                         </Button>
                         {topics.map((topic) => (
                             <Button
@@ -96,7 +100,15 @@ const LeaderboardPage: React.FC = () => {
                                 variant={selectedTopicId === topic.id ? 'default' : 'outline'}
                                 onClick={() => setSelectedTopicId(topic.id)}
                                 size="sm"
+                                className={`font-bold rounded-full transition-all duration-200 hover:scale-105 ${selectedTopicId === topic.id
+                                    ? 'bg-gradient-to-r from-purple-400 to-pink-500 text-white'
+                                    : 'bg-white border-purple-300 text-purple-600 hover:bg-purple-50'
+                                    }`}
                             >
+                                {topic.name === 'English Vocabulary' && '📚'}
+                                {topic.name === 'Geography' && '🌍'}
+                                {topic.name === 'Science' && '🔬'}
+                                {topic.name === 'World History' && '📜'}
                                 {topic.name}
                             </Button>
                         ))}
@@ -105,13 +117,13 @@ const LeaderboardPage: React.FC = () => {
             </Card>
 
             {/* Leaderboard */}
-            <Card>
+            <Card className="border-4 border-blue-300 bg-gradient-to-r from-blue-50 to-cyan-50">
                 <CardHeader>
-                    <CardTitle>
-                        {selectedTopicId === 'all'
-                            ? 'Overall Rankings'
-                            : `${getTopicName(selectedTopicId)} Rankings`
-                        }
+                    <CardTitle className="text-blue-700 text-2xl font-bold">
+                        🏅 {selectedTopicId === 'all'
+                            ? 'Overall Champions'
+                            : `${getTopicName(selectedTopicId)} Champions`
+                        } 🏅
                     </CardTitle>
                 </CardHeader>
                 <CardContent>
@@ -129,8 +141,8 @@ const LeaderboardPage: React.FC = () => {
                                     <div
                                         key={entry.id}
                                         className={`flex items-center justify-between p-4 rounded-lg border transition-all hover:shadow-md ${isTopThree
-                                                ? 'bg-gradient-to-r from-yellow-50 to-amber-50 border-yellow-200'
-                                                : 'bg-gray-50 hover:bg-gray-100'
+                                            ? 'bg-gradient-to-r from-yellow-50 to-amber-50 border-yellow-200'
+                                            : 'bg-gray-50 hover:bg-gray-100'
                                             }`}
                                     >
                                         <div className="flex items-center gap-4">

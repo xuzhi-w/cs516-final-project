@@ -74,67 +74,69 @@ const Quiz: React.FC<QuizProps> = ({ topic, questions, onQuizComplete, onBack })
     const progressPercentage = ((currentQuestionIndex + 1) / questions.length) * 100;
 
     return (
-        <div className="bg-white rounded-lg shadow-lg p-8">
+        <div className="bg-white rounded-2xl shadow-2xl p-8 border-4 border-pink-300">
             {/* Header */}
             <div className="flex items-center justify-between mb-6">
                 <Button
                     variant="ghost"
                     onClick={onBack}
-                    className="flex items-center gap-2"
+                    className="flex items-center gap-2 bg-red-100 hover:bg-red-200 text-red-600 rounded-full px-4 py-2 font-bold transition-all duration-200 hover:scale-105"
                 >
                     <ArrowLeftIcon className="w-4 h-4" />
-                    Back to Topics
+                    🏠 Back to Topics
                 </Button>
                 <div className="flex items-center gap-4">
-                    <div className="flex items-center gap-2 text-gray-600">
+                    <div className="flex items-center gap-2 text-blue-600 bg-blue-100 px-3 py-2 rounded-full font-bold">
                         <ClockIcon className="w-4 h-4" />
-                        <span>{formatTime(timeElapsed)}</span>
+                        ⏰ {formatTime(timeElapsed)}
                     </div>
-                    <div className="text-sm text-gray-500">
-                        Question {currentQuestionIndex + 1} of {questions.length}
+                    <div className="text-sm text-purple-600 bg-purple-100 px-3 py-2 rounded-full font-bold">
+                        📝 Question {currentQuestionIndex + 1} of {questions.length}
                     </div>
                 </div>
             </div>
 
             {/* Progress Bar */}
-            <div className="w-full bg-gray-200 rounded-full h-2 mb-8">
+            <div className="w-full bg-gray-200 rounded-full h-4 mb-8 overflow-hidden">
                 <div
-                    className="bg-blue-600 h-2 rounded-full transition-all duration-300"
+                    className="bg-gradient-to-r from-green-400 to-blue-500 h-4 rounded-full transition-all duration-500 relative"
                     style={{ width: `${progressPercentage}%` }}
-                />
+                >
+                    <div className="absolute inset-0 bg-white/20 animate-pulse"></div>
+                </div>
             </div>
 
             {/* Topic and Question */}
             <div className="mb-8">
-                <h2 className="text-lg font-semibold text-gray-600 mb-2">{topic.name}</h2>
-                <h3 className="text-2xl font-bold text-gray-800 mb-6">
+                <h2 className="text-xl font-bold text-purple-600 mb-4 text-center">
+                    🎯 {topic.name} Challenge 🎯
+                </h2>
+                <h3 className="text-2xl font-bold text-gray-800 mb-6 text-center bg-yellow-100 p-4 rounded-2xl border-2 border-yellow-300">
                     {currentQuestion.question}
                 </h3>
             </div>
 
             {/* Answer Options */}
-            <div className="space-y-3 mb-8">
+            <div className="space-y-4 mb-8">
                 {currentQuestion.answer.map((answer, index) => (
                     <button
                         key={index}
                         onClick={() => handleAnswerSelect(answer)}
-                        className={`w-full p-4 text-left rounded-lg border-2 transition-all duration-200 ${selectedAnswer === answer
-                                ? 'border-blue-500 bg-blue-50 text-blue-700'
-                                : 'border-gray-200 hover:border-gray-300 hover:bg-gray-50'
+                        className={`w-full p-4 text-left rounded-2xl border-3 transition-all duration-200 transform hover:scale-105 ${selectedAnswer === answer
+                            ? 'border-green-500 bg-green-100 text-green-700 shadow-lg scale-105'
+                            : 'border-gray-300 hover:border-purple-400 hover:bg-purple-50 hover:shadow-md'
                             }`}
                     >
-                        <div className="flex items-center gap-3">
+                        <div className="flex items-center gap-4">
                             <div
-                                className={`w-6 h-6 rounded-full border-2 flex items-center justify-center ${selectedAnswer === answer
-                                        ? 'border-blue-500 bg-blue-500'
-                                        : 'border-gray-300'
+                                className={`w-8 h-8 rounded-full border-3 flex items-center justify-center font-bold text-lg ${selectedAnswer === answer
+                                    ? 'border-green-500 bg-green-500 text-white'
+                                    : 'border-gray-400 bg-white text-gray-600'
                                     }`}
                             >
-                                {selectedAnswer === answer && (
-                                    <div className="w-2 h-2 bg-white rounded-full" />
-                                )}
+                                {selectedAnswer === answer ? '✓' : String.fromCharCode(65 + index)}
                             </div>
-                            <span className="font-medium">{answer}</span>
+                            <span className="font-medium text-lg">{answer}</span>
                         </div>
                     </button>
                 ))}
@@ -145,9 +147,9 @@ const Quiz: React.FC<QuizProps> = ({ topic, questions, onQuizComplete, onBack })
                 <Button
                     onClick={handleNext}
                     disabled={!selectedAnswer}
-                    className="px-8"
+                    className="px-8 py-3 text-lg font-bold bg-gradient-to-r from-green-400 to-blue-500 hover:from-green-500 hover:to-blue-600 text-white rounded-full transition-all duration-200 hover:scale-105 shadow-lg disabled:opacity-50 disabled:scale-100"
                 >
-                    {isLastQuestion ? 'Finish Quiz' : 'Next Question'}
+                    {isLastQuestion ? '🎉 Finish Quiz!' : '➡️ Next Question'}
                 </Button>
             </div>
         </div>

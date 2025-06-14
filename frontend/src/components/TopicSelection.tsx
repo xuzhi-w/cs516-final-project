@@ -26,13 +26,13 @@ const getTopicIcon = (topicId: string) => {
 const getTopicColor = (topicId: string) => {
     switch (topicId) {
         case 'english_vocabulary':
-            return 'from-green-400 to-green-600';
+            return 'from-emerald-400 to-teal-500';
         case 'geography':
-            return 'from-blue-400 to-blue-600';
+            return 'from-blue-400 to-cyan-500';
         case 'science':
-            return 'from-purple-400 to-purple-600';
+            return 'from-purple-400 to-indigo-500';
         case 'world_history':
-            return 'from-orange-400 to-orange-600';
+            return 'from-orange-400 to-red-500';
         default:
             return 'from-gray-400 to-gray-600';
     }
@@ -40,13 +40,13 @@ const getTopicColor = (topicId: string) => {
 
 const TopicSelection: React.FC<TopicSelectionProps> = ({ topics, onTopicSelect }) => {
     return (
-        <div className="bg-white rounded-lg shadow-lg p-8">
+        <div className="bg-white rounded-2xl shadow-2xl p-8 border-4 border-yellow-300">
             <div className="mb-6">
-                <h2 className="text-2xl font-bold text-center mb-2 text-gray-800">
-                    Choose Your Quiz Topic
+                <h2 className="text-3xl font-bold text-center mb-2 text-purple-700">
+                    🎯 Choose Your Quiz Topic 🎯
                 </h2>
-                <p className="text-center text-gray-600">
-                    Select a topic to start your quiz. Each quiz contains 10 questions.
+                <p className="text-center text-gray-600 text-lg">
+                    Pick a topic and show off your amazing knowledge! 🌟
                 </p>
             </div>
 
@@ -57,22 +57,22 @@ const TopicSelection: React.FC<TopicSelectionProps> = ({ topics, onTopicSelect }
                         className="group cursor-pointer"
                         onClick={() => onTopicSelect(topic)}
                     >
-                        <div className={`bg-gradient-to-r ${getTopicColor(topic.id)} rounded-lg p-6 text-white transform transition-all duration-200 hover:scale-105 hover:shadow-lg`}>
+                        <div className={`bg-gradient-to-r ${getTopicColor(topic.id)} rounded-2xl p-6 text-white transform transition-all duration-200 hover:scale-110 hover:shadow-2xl hover:rotate-1`}>
                             <div className="flex items-center justify-center mb-4">
-                                <div className="bg-white/20 rounded-full p-3">
+                                <div className="bg-white/30 rounded-full p-4 backdrop-blur-sm">
                                     {getTopicIcon(topic.id)}
                                 </div>
                             </div>
-                            <h3 className="text-xl font-bold text-center mb-2">{topic.name}</h3>
-                            <p className="text-center text-white/90 text-sm">
-                                Test your knowledge in {topic.name.toLowerCase()}
+                            <h3 className="text-2xl font-bold text-center mb-2">{topic.name}</h3>
+                            <p className="text-center text-white/90 text-sm mb-4">
+                                Ready to become a {topic.name.toLowerCase()} expert? 🏆
                             </p>
                             <div className="mt-4 flex justify-center">
                                 <Button
                                     variant="secondary"
-                                    className="bg-white/20 hover:bg-white/30 text-white border-white/30"
+                                    className="bg-white/20 hover:bg-white/30 text-white border-white/30 font-bold text-lg px-6 py-2 rounded-full transition-all duration-200 hover:scale-105"
                                 >
-                                    Start Quiz
+                                    🚀 Start Quiz
                                 </Button>
                             </div>
                         </div>
