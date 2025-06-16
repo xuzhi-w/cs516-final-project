@@ -12,12 +12,16 @@ function Auth() {
         const expiresIn = params.get('expires_in');
         const tokenType = params.get('token_type');
 
-        console.log({
+        localStorage.setItem("auth", JSON.stringify({
             idToken,
             accessToken,
             expiresIn,
             tokenType
-        });
+        }));
+
+        if (idToken && accessToken && expiresIn && tokenType) {
+            window.location.href = '/';
+        }
     }, [])
 
 

@@ -4,6 +4,7 @@ import HomePage from './pages/HomePage'
 import QuizPage from './pages/QuizPage'
 import MathQuizPage from './pages/MathQuizPage'
 import LeaderboardPage from './pages/LeaderboardPage'
+import Auth from './pages/Auth'
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
             <Route path="/quiz/:topicId" element={<QuizPage />} />
             <Route path="/quiz/math" element={<MathQuizPage />} />
             <Route path="/leaderboard" element={<LeaderboardPage />} />
+            <Route path="/Auth" element={<Auth />} />
           </Routes>
         </div>
       </div>
