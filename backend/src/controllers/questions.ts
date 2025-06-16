@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Request, Response } from "express";
 import { PutItemCommand, ScanCommand } from "@aws-sdk/client-dynamodb";
 import { v4 as uuidv4 } from "uuid";
@@ -61,7 +62,7 @@ export const getQuestions = async (req: Request, res: Response) => {
 };
 
 // Received internal server error so, implemented this separately in another lambda
-export const populateData = async (req: Request, res: Response) => {
+export const populateData = async () => {
   try {
     const topics = [];
 
