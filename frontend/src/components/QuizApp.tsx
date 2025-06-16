@@ -44,9 +44,9 @@ const QuizApp: React.FC = () => {
         setCurrentState('topic-selection');
     };
 
-    const handleViewLeaderboard = () => {
-        setCurrentState('leaderboard');
-    };
+    // const handleViewLeaderboard = () => {
+    //     setCurrentState('leaderboard');
+    // };
 
     const handleBackToTopics = () => {
         setCurrentState('topic-selection');
@@ -71,7 +71,8 @@ const QuizApp: React.FC = () => {
                     <TopicSelection
                         topics={topics}
                         onTopicSelect={handleTopicSelect}
-                        onViewLeaderboard={handleViewLeaderboard}
+
+                        // onViewLeaderboard={handleViewLeaderboard}
                     />
                 )}
 

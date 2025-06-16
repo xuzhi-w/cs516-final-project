@@ -1,4 +1,3 @@
-import React from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router'
 import HomePage from './pages/HomePage'
 import QuizPage from './pages/QuizPage'
