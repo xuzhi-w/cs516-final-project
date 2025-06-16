@@ -216,3 +216,18 @@ All error responses follow this format:
 }
 ```
 
+# 1. Submit a new leaderboard entry (POST)
+curl -X POST https://jq502bun1g.execute-api.us-east-1.amazonaws.com/dev/leaderboard \
+-H "Content-Type: application/json" \
+-d '{
+"userId": "user777",
+"username": "Sel",
+"email": "sel@example.com",
+"avatarUrl": "https://example.com/avatar.jpg",
+"topicId": "math",
+"score": 99,
+"duration": 110
+}'
+
+# 2. Get leaderboard entries for a topic (GET)
+curl "https://jq502bun1g.execute-api.us-east-1.amazonaws.com/dev/leaderboard?topicId=math"
