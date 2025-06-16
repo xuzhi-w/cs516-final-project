@@ -13,11 +13,11 @@ export const apiClient = axios.create({
 // Request interceptor for adding auth tokens if needed
 apiClient.interceptors.request.use(
 	(config) => {
-		// Add auth token here if needed
-		// const token = localStorage.getItem('authToken');
-		// if (token) {
-		//   config.headers.Authorization = `Bearer ${token}`;
-		// }
+		const data = localStorage.getItem("auth");
+		const token = data ? JSON.parse(data).idToken : null;
+		if (token) {
+			config.headers.Authorization = `Bearer ${token}`;
+		}
 		return config;
 	},
 	(error) => {

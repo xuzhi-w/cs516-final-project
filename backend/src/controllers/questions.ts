@@ -3,8 +3,6 @@ import { Request, Response } from "express";
 import { PutItemCommand, ScanCommand } from "@aws-sdk/client-dynamodb";
 import { v4 as uuidv4 } from "uuid";
 import { dynamoDB } from "../../dynamoClient";
-import { topicsData } from "../data/topicsData";
-import { questionBank } from "../data/questionBank";
 
 export const createQuestion = async (req: Request, res: Response) => {
   const { topicId, question, answers, correctAnswer } = req.body;

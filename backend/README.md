@@ -56,8 +56,8 @@ The server will start on `http://localhost:3000`
 
 ### GET /questions
 
-eg: https://s2mso010w4.execute-api.us-east-1.amazonaws.com/dev/questions/:topicId
-topicId: 9f4cdfed-f317-4986-bbf7-11b3adbb271e
+eg: https://28dnbgw3mk.execute-api.us-east-1.amazonaws.com/dev/questions/:topicId
+topicId: eccca8bf-9e47-4409-b77e-94f149afb607
 Returns all available questions of that topic.
 
 **Response:**
@@ -79,8 +79,7 @@ Returns all available questions of that topic.
 ### GET /topics
 
 Returns all available quiz topics.
-eg: https://s2mso010w4.execute-api.us-east-1.amazonaws.com/dev/topics
-
+eg: https://28dnbgw3mk.execute-api.us-east-1.amazonaws.com/dev/topics
 **Response:**
 
 ```json
