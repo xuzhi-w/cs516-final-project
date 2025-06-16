@@ -215,3 +215,22 @@ All error responses follow this format:
   "message": "Error description"
 }
 ```
+
+## API Testing
+
+You can test the API endpoints using curl or any HTTP client:
+
+```bash
+# Create a new leaderboard entry (submit a score)
+curl -X POST https://jq502bun1g.execute-api.us-east-1.amazonaws.com/dev/leaderboard \
+  -H "Content-Type: application/json" \
+  -d '{
+    "userId": "user123",
+    "username": "Sel",
+    "topicId": "math",
+    "score": 95,
+    "duration": 120
+  }'
+
+# Get leaderboard entries for a topic (example GET, adjust endpoint if available)
+curl https://jq502bun1g.execute-api.us-east-1.amazonaws.com/dev/leaderboard?topicId=math

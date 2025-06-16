@@ -7,10 +7,22 @@ provider:
   stage: ${opt:stage, 'dev'}
   memorySize: 256
   timeout: 30
+
   environment:
     NODE_ENV: production
     MONGODB_URI: ${env:MONGODB_URI, ''}
     JWT_SECRET: ${env:JWT_SECRET, '2Ekum8Jhei8eTbM0XAx8zJdEdkJ5g'}
+    LEADERBOARD_TABLE_NAME: Leaderboard
+
+  iam:
+    role:
+      statements:
+        - Effect: "Allow"
+          Action:
+            - "dynamodb:Scan"
+            - "dynamodb:Query"
+          Resource:
+            - "arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.LEADERBOARD_TABLE_NAME}"
 
 functions:
   api:
@@ -41,4 +53,5 @@ package:
     - '!tsconfig.json'
     - 'dist/**'
     - 'node_modules/**'
+    - 'cs516-final-project'
   individually: false
