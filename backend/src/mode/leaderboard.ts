@@ -1,10 +1,12 @@
 import { DynamoDBClient, PutItemCommand, ScanCommand } from "@aws-sdk/client-dynamodb";
-import { randomUUID } from "crypto";
+import { v4 as uuidv4 } from "uuid";
 
-const dynamoDB = new DynamoDBClient({ region: "us-east-1" });
-const TABLE_NAME = process.env.LEADERBOARD_TABLE_NAME || "Leaderboard";
+const dynamoDB = new DynamoDBClient({
+  region: process.env.AWS_REGION || "us-east-1"
+});
 
-export const createLeaderboardEntry = async (entry: {
+interface LeaderboardEntry {
+  id: string;
   userId: string;
   username: string;
   email?: string;
@@ -12,9 +14,12 @@ export const createLeaderboardEntry = async (entry: {
   topicId: string;
   score: number;
   duration: number;
-}) => {
-  const now = new Date().toISOString();
-  const id = randomUUID();
+  createdAt: string;
+}
+
+export const createLeaderboardEntry = async (entry: Omit<LeaderboardEntry, "id" | "createdAt">): Promise<LeaderboardEntry> => {
+  const id = uuidv4();
+  const createdAt = new Date().toISOString();
 
   const item = {
     id: { S: id },
@@ -25,70 +30,51 @@ export const createLeaderboardEntry = async (entry: {
     topicId: { S: entry.topicId },
     score: { N: entry.score.toString() },
     duration: { N: entry.duration.toString() },
-    createdAt: { S: now },
+    createdAt: { S: createdAt }
   };
 
   const params = {
-    TableName: TABLE_NAME,
-    Item: item,
+    TableName: "Leaderboard",
+    Item: item
   };
 
-  try {
-    await dynamoDB.send(new PutItemCommand(params));
-    return {
-      id,
-      userId: entry.userId,
-      username: entry.username,
-      email: entry.email || null,
-      avatarUrl: entry.avatarUrl || null,
-      topicId: entry.topicId,
-      score: entry.score,
-      duration: entry.duration,
-      createdAt: now,
-    };
-  } catch (error) {
-    console.error("ERROR: Failed to create leaderboard entry:", error);
-    throw error;
-  }
+  await dynamoDB.send(new PutItemCommand(params));
+  return { id, ...entry, createdAt };
 };
 
-export const getLeaderboardEntries = async (topicId?: string): Promise<any[]> => {
+export const getLeaderboardEntries = async (topicId?: string): Promise<LeaderboardEntry[]> => {
   let params: any = {
-    TableName: TABLE_NAME,
+    TableName: "Leaderboard"
   };
 
   if (topicId) {
     params.FilterExpression = "topicId = :topicId";
     params.ExpressionAttributeValues = {
-      ":topicId": { S: topicId },
+      ":topicId": { S: topicId }
     };
   }
 
-  try {
-    const result = await dynamoDB.send(new ScanCommand(params));
+  const result = await dynamoDB.send(new ScanCommand(params));
 
-    const entries = (result.Items || []).map((item) => ({
-      id: item.id.S!,
-      userId: item.userId.S!,
-      username: item.username?.S || "Unknown",
-      email: item.email?.S || null,
-      avatarUrl: item.avatarUrl?.S || null,
-      topicId: item.topicId.S!,
-      score: parseInt(item.score.N!),
-      duration: parseInt(item.duration.N!),
-      createdAt: item.createdAt.S!,
-    }));
+  const entries: LeaderboardEntry[] = (result.Items || []).map(item => ({
+    id: item.id.S!,
+    userId: item.userId.S!,
+    username: item.username?.S || "Unknown",
+    email: item.email?.S ?? undefined,
+    avatarUrl: item.avatarUrl?.S ?? undefined,
+    topicId: item.topicId.S!,
+    score: parseInt(item.score.N!),
+    duration: parseInt(item.duration.N!),
+    createdAt: item.createdAt.S!
+  }));
 
-    entries.sort((a, b) => {
-      if (b.score !== a.score) {
-        return b.score - a.score;
-      }
-      return a.duration - b.duration;
-    });
+  // Sort: highest score first, then shortest duration
+  entries.sort((a, b) => {
+    if (b.score !== a.score) {
+      return b.score - a.score;
+    }
+    return a.duration - b.duration;
+  });
 
-    return entries;
-  } catch (error) {
-    console.error("ERROR: Failed to get leaderboard entries:", error);
-    throw error;
-  }
+  return entries;
 };

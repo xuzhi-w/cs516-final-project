@@ -27,6 +27,7 @@ provider:
 functions:
   api:
     handler: dist/index.handler
+    role: LambdaExecutionRole
     events:
       - http:
           path: /{proxy+}
@@ -36,7 +37,23 @@ functions:
           path: /
           method: any
           cors: true
-
+  populateQuestion:
+    handler: populate/index.handler
+    role: LambdaExecutionRole
+    package:
+      individually: true
+      patterns:
+        - populate/**
+        - '!node_modules/**'
+        - '!dist/**'
+        - '!tsconfig.json'
+        - '!.env'
+        - '!deploy.sh'
+        - '!README.md'
+        - '!yarn.lock'
+        - '!package.json'
+        - '!package-lock.json'
+        - '!eslint.config.mjs'
 plugins:
   - serverless-offline
 
@@ -55,3 +72,58 @@ package:
     - 'node_modules/**'
     - 'cs516-final-project'
   individually: false
+
+resources:
+  Resources:
+    TopicTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: Topic
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        BillingMode: PAY_PER_REQUEST
+
+    QuestionTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: Question
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        BillingMode: PAY_PER_REQUEST
+
+    LeaderboardTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: Leaderboard
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        BillingMode: PAY_PER_REQUEST
+
+    LambdaExecutionRole:
+      Type: AWS::IAM::Role
+      Properties:
+        RoleName: quiz-app-lambda-role-${self:provider.stage}
+        AssumeRolePolicyDocument:
+          Version: "2012-10-17"
+          Statement:
+            - Effect: Allow
+              Principal:
+                Service:
+                  - lambda.amazonaws.com
+              Action: sts:AssumeRole
+        ManagedPolicyArns:
+          - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+          - arn:aws:iam::aws:policy/AmazonDynamoDBFullAccess
+          - arn:aws:iam::aws:policy/AmazonDynamoDBFullAccess_v2
