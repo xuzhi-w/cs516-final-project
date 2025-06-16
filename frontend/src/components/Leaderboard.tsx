@@ -29,8 +29,7 @@ const Leaderboard: React.FC<LeaderboardProps> = ({ onBack }) => {
     const getTopicName = (topicId: string) => {
         const topic = topics.find(t => t.id === topicId);
         return topic?.name || 'Unknown Topic';
-    };
-
+    }
     const getRankColor = (index: number) => {
         if (index === 0) return 'text-yellow-600'; // Gold
         if (index === 1) return 'text-gray-500'; // Silver

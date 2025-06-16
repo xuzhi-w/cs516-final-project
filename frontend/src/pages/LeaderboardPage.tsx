@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
 import { Button } from '../components/ui/button';
-import { Trophy, Medal, Award, Clock, ArrowLeft, Filter } from 'lucide-react';
+import { Trophy, Medal, Award, Clock} from 'lucide-react';
 import { leaderboard, users, topics } from '../data';
 import { Leaderboard, User, Topic } from '../model/user';
 
