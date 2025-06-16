@@ -36,7 +36,7 @@ export const createLeaderboardEntry = async (entry: Omit<LeaderboardEntry, 'id' 
 };
 
 export const getLeaderboardEntries = async (topicId?: string): Promise<LeaderboardEntry[]> => {
-  let params: any = {
+  const params: any = {
     TableName: "Leaderboard"
   };
 
