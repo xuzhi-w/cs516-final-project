@@ -9,7 +9,7 @@ import { Button } from './components/ui/button'
 import { Avatar, AvatarFallback, AvatarImage } from './components/ui/avatar'
 import { ChevronDownIcon, LogInIcon, LogOutIcon } from 'lucide-react'
 import { } from '@radix-ui/react-dropdown-menu'
-
+import React from 'react';
 const LOGIN_URL = import.meta.env.VITE_LOGIN_URL
 
 function ProfileIcon({ name, email }: { name: string, email: string }) {
