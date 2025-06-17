@@ -3,11 +3,34 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { TrophyIcon, ClockIcon, UserIcon, ArrowLeftIcon } from "lucide-react";
 import { useLeaderboard, useTopics } from "@/api/queries";
-import { users } from "@/data";
 
 interface LeaderboardProps {
   onBack: () => void;
 }
+
+const getUserFromToken = () => {
+  try {
+    const authData = localStorage.getItem("auth");
+    if (!authData) return null;
+
+    const { idToken } = JSON.parse(authData);
+    if (!idToken) return null;
+
+    // Decode JWT token (split and decode base64)
+    const payload = idToken.split(".")[1];
+    const decodedPayload = JSON.parse(atob(payload));
+
+    return {
+      userId: decodedPayload.sub,
+      username: decodedPayload["cognito:username"],
+      email: decodedPayload.email,
+    };
+  } catch (error) {
+    console.error("Error decoding token:", error);
+    return null;
+  }
+};
+
 
 const Leaderboard: React.FC<LeaderboardProps> = ({ onBack }) => {
   const [selectedTopic, setSelectedTopic] = useState<string | null>(null);
@@ -26,9 +49,12 @@ const Leaderboard: React.FC<LeaderboardProps> = ({ onBack }) => {
     return `${minutes}:${remainingSeconds.toString().padStart(2, "0")}`;
   };
 
-  const getUserName = (userId: string) => {
-    const user = users.find((u) => u.id === userId);
-    return user?.name || "Unknown User";
+  const getUserName = (): string => {
+    const user = getUserFromToken();
+    if (user) {
+      return user.username || "Anonymous User";
+    }
+    return "Anonymous User";
   };
 
   const getTopicName = (topicId: string) => {
@@ -122,7 +148,7 @@ const Leaderboard: React.FC<LeaderboardProps> = ({ onBack }) => {
                     <UserIcon className="w-5 h-5 text-gray-500" />
                     <div>
                       <div className="font-semibold text-gray-800">
-                        {getUserName(entry.userId)}
+                        {getUserName()}
                       </div>
                       {!selectedTopic && (
                         <div className="text-sm text-gray-500">

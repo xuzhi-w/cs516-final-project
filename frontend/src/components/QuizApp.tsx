@@ -3,8 +3,8 @@ import TopicSelection from "./TopicSelection";
 import Quiz from "./Quiz";
 import ScoreDisplay from "./ScoreDisplay";
 import Leaderboard from "./Leaderboard";
-import { Topic, Questions } from "@/model/user";
-import { topics, allQuestions, getCurrentUser } from "@/data";
+import { Topic } from "@/model/user";
+import { useTopics, useQuestions } from "@/api/queries";
 
 type QuizState = "topic-selection" | "quiz" | "score" | "leaderboard";
 
@@ -18,11 +18,43 @@ export interface QuizResult {
   incorrectAnswers: number;
 }
 
+const getUserFromToken = () => {
+  try {
+    const authData = localStorage.getItem("auth");
+    if (!authData) return null;
+
+    const { idToken } = JSON.parse(authData);
+    if (!idToken) return null;
+
+    // Decode JWT token (split and decode base64)
+    const payload = idToken.split(".")[1];
+    const decodedPayload = JSON.parse(atob(payload));
+
+    return {
+      userId: decodedPayload.sub,
+      username: decodedPayload["cognito:username"],
+      email: decodedPayload.email,
+    };
+  } catch (error) {
+    console.error("Error decoding token:", error);
+    return null;
+  }
+};
+
 const QuizApp: React.FC = () => {
   const [currentState, setCurrentState] =
     useState<QuizState>("topic-selection");
   const [selectedTopic, setSelectedTopic] = useState<Topic | null>(null);
   const [quizResult, setQuizResult] = useState<QuizResult | null>(null);
+
+  // Use React Query to fetch topics and questions
+  const { data: apiTopics = [], isLoading: topicsLoading } = useTopics();
+  const { data: questions = [], isLoading: questionsLoading } = useQuestions(
+    selectedTopic?.id || ""
+  );
+
+  // Append the Math Sprint topic to the fetched topics
+  const topics = [...apiTopics, { id: "math", name: "Math Sprint" }];
 
   const handleTopicSelect = (topic: Topic) => {
     setSelectedTopic(topic);
@@ -53,10 +85,6 @@ const QuizApp: React.FC = () => {
     setCurrentState("topic-selection");
   };
 
-  const getQuestionsForTopic = (topicId: string): Questions[] => {
-    return allQuestions.filter((q) => q.topicId === topicId);
-  };
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4">
       <div className="max-w-4xl mx-auto">
@@ -70,18 +98,29 @@ const QuizApp: React.FC = () => {
           <div className="text-sm text-gray-500">
             Logged in as:{" "}
             <span className="font-medium text-gray-700">
-              {getCurrentUser().name}
+              {getUserFromToken()?.username || "Guest"}
             </span>
           </div>
         </header>
 
         {currentState === "topic-selection" && (
-          <TopicSelection
-            topics={topics}
-            onTopicSelect={handleTopicSelect}
-
-            // onViewLeaderboard={handleViewLeaderboard}
-          />
+          <>
+            {topicsLoading ? (
+              <div className="bg-white rounded-2xl shadow-2xl p-8 border-4 border-yellow-300">
+                <div className="flex items-center justify-center py-8">
+                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-purple-600"></div>
+                  <span className="ml-3 text-purple-600 text-lg">
+                    Loading topics...
+                  </span>
+                </div>
+              </div>
+            ) : (
+              <TopicSelection
+                topics={topics}
+                onTopicSelect={handleTopicSelect}
+              />
+            )}
+          </>
         )}
 
         {currentState === "leaderboard" && (
@@ -89,12 +128,60 @@ const QuizApp: React.FC = () => {
         )}
 
         {currentState === "quiz" && selectedTopic && (
-          <Quiz
-            topic={selectedTopic}
-            questions={getQuestionsForTopic(selectedTopic.id)}
-            onQuizComplete={handleQuizComplete}
-            onBack={() => setCurrentState("topic-selection")}
-          />
+          <>
+            {selectedTopic.id === "math" ? (
+              // Math Sprint uses a different component that generates its own questions
+              <div className="bg-white rounded-2xl shadow-2xl p-8 border-4 border-yellow-300">
+                <div className="text-center">
+                  <h2 className="text-2xl font-bold text-purple-600 mb-4">
+                    🔢 Math Sprint Quiz 🔢
+                  </h2>
+                  <p className="text-gray-600 mb-4">
+                    Math Sprint generates questions dynamically. Please use the dedicated Math Quiz page.
+                  </p>
+                  <button
+                    onClick={() => setCurrentState("topic-selection")}
+                    className="bg-purple-500 hover:bg-purple-600 text-white px-6 py-2 rounded-lg"
+                  >
+                    Back to Topics
+                  </button>
+                </div>
+              </div>
+            ) : questionsLoading ? (
+              <div className="bg-white rounded-2xl shadow-2xl p-8 border-4 border-yellow-300">
+                <div className="flex items-center justify-center py-8">
+                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-purple-600"></div>
+                  <span className="ml-3 text-purple-600 text-lg">
+                    Loading questions...
+                  </span>
+                </div>
+              </div>
+            ) : questions.length === 0 ? (
+              <div className="bg-white rounded-2xl shadow-2xl p-8 border-4 border-yellow-300">
+                <div className="text-center">
+                  <h2 className="text-2xl font-bold text-red-600 mb-4">
+                    No Questions Available
+                  </h2>
+                  <p className="text-gray-600 mb-4">
+                    Sorry, no questions are available for this topic at the moment.
+                  </p>
+                  <button
+                    onClick={() => setCurrentState("topic-selection")}
+                    className="bg-purple-500 hover:bg-purple-600 text-white px-6 py-2 rounded-lg"
+                  >
+                    Back to Topics
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <Quiz
+                topic={selectedTopic}
+                questions={questions}
+                onQuizComplete={handleQuizComplete}
+                onBack={() => setCurrentState("topic-selection")}
+              />
+            )}
+          </>
         )}
 
         {currentState === "score" && quizResult && (
