@@ -20,14 +20,17 @@ export default defineConfig([
     rules: {
       ...pluginReact.configs.flat.recommended.rules,
       "react/react-in-jsx-scope": "off",
-      "@typescript-eslint/no-unused-vars": ["error", {
-        "varsIgnorePattern": "^React$"
-      }]
+      "@typescript-eslint/no-unused-vars": [
+        "error",
+        {
+          varsIgnorePattern: "^React$",
+        },
+      ],
     },
     settings: {
       react: {
-        version: "detect"
-      }
-    }
-  }
+        version: "detect",
+      },
+    },
+  },
 ]);

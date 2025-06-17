@@ -31,7 +31,6 @@ const getUserFromToken = () => {
   }
 };
 
-
 const Leaderboard: React.FC<LeaderboardProps> = ({ onBack }) => {
   const [selectedTopic, setSelectedTopic] = useState<string | null>(null);
 

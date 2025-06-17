@@ -50,7 +50,7 @@ const QuizApp: React.FC = () => {
   // Use React Query to fetch topics and questions
   const { data: apiTopics = [], isLoading: topicsLoading } = useTopics();
   const { data: questions = [], isLoading: questionsLoading } = useQuestions(
-    selectedTopic?.id || ""
+    selectedTopic?.id || "",
   );
 
   // Append the Math Sprint topic to the fetched topics
@@ -137,7 +137,8 @@ const QuizApp: React.FC = () => {
                     🔢 Math Sprint Quiz 🔢
                   </h2>
                   <p className="text-gray-600 mb-4">
-                    Math Sprint generates questions dynamically. Please use the dedicated Math Quiz page.
+                    Math Sprint generates questions dynamically. Please use the
+                    dedicated Math Quiz page.
                   </p>
                   <button
                     onClick={() => setCurrentState("topic-selection")}
@@ -163,7 +164,8 @@ const QuizApp: React.FC = () => {
                     No Questions Available
                   </h2>
                   <p className="text-gray-600 mb-4">
-                    Sorry, no questions are available for this topic at the moment.
+                    Sorry, no questions are available for this topic at the
+                    moment.
                   </p>
                   <button
                     onClick={() => setCurrentState("topic-selection")}

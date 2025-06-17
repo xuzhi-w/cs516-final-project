@@ -32,12 +32,14 @@ const getTopicIcon = (topicId: string) => {
 };
 
 const getTopicColor = () => {
-  const colors = ["from-emerald-400 to-teal-500",
+  const colors = [
+    "from-emerald-400 to-teal-500",
     "from-blue-400 to-cyan-500",
     "from-purple-400 to-indigo-500",
     "from-orange-400 to-red-500",
     "from-pink-400 to-rose-500",
-    "from-gray-400 to-gray-600"]
+    "from-gray-400 to-gray-600",
+  ];
 
   const randomIndex = Math.floor(Math.random() * colors.length);
   return colors[randomIndex] || "from-gray-400 to-gray-600";
