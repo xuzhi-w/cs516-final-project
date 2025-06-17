@@ -8,7 +8,7 @@ phases:
 
   build:
     commands:
-      - npm run build
+      - VITE_API_BASE_URL=https://n2f7znze3m.execute-api.us-east-1.amazonaws.com/dev npm run build
 
 artifacts:
   files:
