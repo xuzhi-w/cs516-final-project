@@ -14,15 +14,6 @@ provider:
     JWT_SECRET: ${env:JWT_SECRET, '2Ekum8Jhei8eTbM0XAx8zJdEdkJ5g'}
     LEADERBOARD_TABLE_NAME: Leaderboard
 
-  iam:
-    role:
-      statements:
-        - Effect: "Allow"
-          Action:
-            - "dynamodb:Scan"
-            - "dynamodb:Query"
-          Resource:
-            - "arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.LEADERBOARD_TABLE_NAME}"
 
 functions:
   api:
