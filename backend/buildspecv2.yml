@@ -1,0 +1,35 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 20
+    commands:
+      - echo "Installing dependencies..."
+      - npm install
+
+  pre_build:
+    commands:
+      - echo "Running prepare step..."
+      - mkdir -p populate
+      - cp src/functions/populate/* populate
+
+  build:
+    commands:
+      - echo "Building project..."
+      - npm run build
+      - echo "Deploying via Serverless..."
+      - npx serverless deploy
+
+  post_build:
+    commands:
+      - echo "Cleaning up..."
+      - rm -rf ./populate
+
+artifacts:
+  files:
+    - '**/*'
+
+cache:
+  paths:
+    - 'node_modules/**/*'
