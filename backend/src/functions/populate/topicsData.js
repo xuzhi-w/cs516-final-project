@@ -4,8 +4,8 @@ const topicsData = [
   "History",
   "Geography",
   "Sports",
-  "Entertainment",
-  "Puzzles",
+  // "Entertainment",
+  // "Puzzles",
 ];
 
 module.exports = { topicsData };
