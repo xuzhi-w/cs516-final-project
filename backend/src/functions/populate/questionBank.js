@@ -24,17 +24,6 @@ const questionBank = [
   },
   {
     topicId: "History",
-    question: "Which empire was ruled by Julius Caesar?",
-    answers: [
-      "Roman Empire",
-      "Mongol Empire",
-      "Ottoman Empire",
-      "British Empire",
-    ],
-    correctAnswer: "Roman Empire",
-  },
-  {
-    topicId: "History",
     question:
       "What was the name of the ship that sank in 1912 after hitting an iceberg?",
     answers: ["Titanic", "Lusitania", "Queen Mary", "Endeavour"],
@@ -115,23 +104,6 @@ const questionBank = [
   },
   {
     topicId: "History",
-    question: "Which civilization built Machu Picchu?",
-    answers: ["Inca", "Maya", "Aztec", "Olmec"],
-    correctAnswer: "Inca",
-  },
-  {
-    topicId: "History",
-    question: "Who wrote the Declaration of Independence?",
-    answers: [
-      "Thomas Jefferson",
-      "James Madison",
-      "George Washington",
-      "Benjamin Franklin",
-    ],
-    correctAnswer: "Thomas Jefferson",
-  },
-  {
-    topicId: "History",
     question:
       "The Great Wall of China was primarily built to defend against which group?",
     answers: ["Mongols", "Huns", "Japanese", "Russians"],
@@ -197,18 +169,6 @@ const questionBank = [
   },
   {
     topicId: "History",
-    question:
-      "Which war was fought between the North and South regions in the U.S. from 1861 to 1865?",
-    answers: [
-      "American Civil War",
-      "Revolutionary War",
-      "War of 1812",
-      "Spanish-American War",
-    ],
-    correctAnswer: "American Civil War",
-  },
-  {
-    topicId: "History",
     question: "Who led India to independence from British rule?",
     answers: [
       "Mahatma Gandhi",
@@ -261,47 +221,6 @@ const questionBank = [
   },
   {
     topicId: "History",
-    question: "The Berlin Wall fell in which year?",
-    answers: ["1989", "1991", "1980", "1979"],
-    correctAnswer: "1989",
-  },
-  {
-    topicId: "History",
-    question: "Who was the last Pharaoh of ancient Egypt?",
-    answers: ["Cleopatra VII", "Ramses II", "Tutankhamun", "Akhenaten"],
-    correctAnswer: "Cleopatra VII",
-  },
-  {
-    topicId: "History",
-    question: "Which battle marked the end of Napoleon's reign in 1815?",
-    answers: [
-      "Battle of Waterloo",
-      "Battle of Trafalgar",
-      "Battle of Austerlitz",
-      "Battle of Leipzig",
-    ],
-    correctAnswer: "Battle of Waterloo",
-  },
-  {
-    topicId: "History",
-    question:
-      "What document was signed in 1215 limiting the powers of the English king?",
-    answers: [
-      "Magna Carta",
-      "Bill of Rights",
-      "Treaty of Versailles",
-      "Declaration of Independence",
-    ],
-    correctAnswer: "Magna Carta",
-  },
-  {
-    topicId: "History",
-    question: "The Renaissance began in which country?",
-    answers: ["Italy", "France", "England", "Germany"],
-    correctAnswer: "Italy",
-  },
-  {
-    topicId: "History",
     question: "Which U.S. President issued the Emancipation Proclamation?",
     answers: [
       "Abraham Lincoln",
@@ -310,13 +229,6 @@ const questionBank = [
       "George Washington",
     ],
     correctAnswer: "Abraham Lincoln",
-  },
-  {
-    topicId: "History",
-    question:
-      "What was the name of the first artificial satellite launched into space?",
-    answers: ["Sputnik", "Apollo", "Voyager", "Luna"],
-    correctAnswer: "Sputnik",
   },
   {
     topicId: "Geography",
@@ -343,12 +255,6 @@ const questionBank = [
   },
   {
     topicId: "Geography",
-    question: "What is the capital of Australia?",
-    answers: ["Sydney", "Melbourne", "Perth", "Canberra"],
-    correctAnswer: "Canberra",
-  },
-  {
-    topicId: "Geography",
     question: "Which is the smallest country in the world?",
     answers: ["Monaco", "Vatican City", "San Marino", "Liechtenstein"],
     correctAnswer: "Vatican City",
@@ -367,12 +273,6 @@ const questionBank = [
   },
   {
     topicId: "Geography",
-    question: "What is the capital of Brazil?",
-    answers: ["Rio de Janeiro", "São Paulo", "Brasília", "Salvador"],
-    correctAnswer: "Brasília",
-  },
-  {
-    topicId: "Geography",
     question: "What desert is the largest in the world?",
     answers: ["Gobi", "Kalahari", "Sahara", "Antarctic Desert"],
     correctAnswer: "Antarctic Desert",
@@ -382,12 +282,6 @@ const questionBank = [
     question: "Which U.S. state is the largest by area?",
     answers: ["Texas", "California", "Alaska", "Montana"],
     correctAnswer: "Alaska",
-  },
-  {
-    topicId: "Geography",
-    question: "Which river flows through Paris?",
-    answers: ["Danube", "Thames", "Seine", "Rhine"],
-    correctAnswer: "Seine",
   },
   {
     topicId: "Geography",
@@ -433,18 +327,6 @@ const questionBank = [
   },
   {
     topicId: "Geography",
-    question:
-      "Which two continents are located entirely in the Southern Hemisphere?",
-    answers: [
-      "Australia and Antarctica",
-      "Africa and South America",
-      "Australia and South America",
-      "Antarctica and Africa",
-    ],
-    correctAnswer: "Australia and Antarctica",
-  },
-  {
-    topicId: "Geography",
     question: "Which country is both in Europe and Asia?",
     answers: ["Turkey", "Egypt", "Kazakhstan", "Russia"],
     correctAnswer: "Russia",
@@ -454,12 +336,6 @@ const questionBank = [
     question: "Which US state has the most islands?",
     answers: ["Hawaii", "Alaska", "Florida", "California"],
     correctAnswer: "Alaska",
-  },
-  {
-    topicId: "Geography",
-    question: "What is the capital of South Korea?",
-    answers: ["Seoul", "Busan", "Incheon", "Daegu"],
-    correctAnswer: "Seoul",
   },
   {
     topicId: "Geography",
@@ -1591,6 +1467,295 @@ const questionBank = [
     ],
     correctAnswer: "A function calling itself",
   },
+  [
+    {
+      topicId: "Entertainment",
+      question: "Who directed the movie 'Inception'?",
+      answers: [
+        "Christopher Nolan",
+        "Steven Spielberg",
+        "James Cameron",
+        "Martin Scorsese",
+      ],
+      correctAnswer: "Christopher Nolan",
+    },
+    {
+      topicId: "Entertainment",
+      question: "Which TV show features the character Sheldon Cooper?",
+      answers: [
+        "The Big Bang Theory",
+        "Friends",
+        "Brooklyn Nine-Nine",
+        "Modern Family",
+      ],
+      correctAnswer: "The Big Bang Theory",
+    },
+    {
+      topicId: "Entertainment",
+      question: "Which artist sang 'Blinding Lights'?",
+      answers: ["The Weeknd", "Drake", "Post Malone", "Bruno Mars"],
+      correctAnswer: "The Weeknd",
+    },
+    {
+      topicId: "Entertainment",
+      question: "Which movie won Best Picture at the Oscars in 2020?",
+      answers: ["Parasite", "1917", "Joker", "Once Upon a Time in Hollywood"],
+      correctAnswer: "Parasite",
+    },
+    {
+      topicId: "Entertainment",
+      question: "Which streaming service produced 'Stranger Things'?",
+      answers: ["Netflix", "HBO Max", "Disney+", "Amazon Prime Video"],
+      correctAnswer: "Netflix",
+    },
+    {
+      topicId: "Entertainment",
+      question: "What is the name of Harry Potter’s owl?",
+      answers: ["Hedwig", "Errol", "Crookshanks", "Scabbers"],
+      correctAnswer: "Hedwig",
+    },
+    {
+      topicId: "Entertainment",
+      question: "Which movie features a talking snowman named Olaf?",
+      answers: ["Frozen", "Moana", "Tangled", "Encanto"],
+      correctAnswer: "Frozen",
+    },
+    {
+      topicId: "Entertainment",
+      question: "Who played the character of Iron Man in the Marvel movies?",
+      answers: [
+        "Robert Downey Jr.",
+        "Chris Evans",
+        "Chris Hemsworth",
+        "Mark Ruffalo",
+      ],
+      correctAnswer: "Robert Downey Jr.",
+    },
+    {
+      topicId: "Entertainment",
+      question: "Which band released the album 'Abbey Road'?",
+      answers: ["The Beatles", "The Rolling Stones", "Pink Floyd", "Queen"],
+      correctAnswer: "The Beatles",
+    },
+    {
+      topicId: "Entertainment",
+      question: "What is the name of the fictional country in 'Black Panther'?",
+      answers: ["Wakanda", "Narnia", "Zamunda", "Elbonia"],
+      correctAnswer: "Wakanda",
+    },
+    {
+      topicId: "Entertainment",
+      question: "Who is the host of 'The Tonight Show' as of 2024?",
+      answers: [
+        "Jimmy Fallon",
+        "Stephen Colbert",
+        "James Corden",
+        "Trevor Noah",
+      ],
+      correctAnswer: "Jimmy Fallon",
+    },
+    {
+      topicId: "Entertainment",
+      question: "Which video game features the character 'Link'?",
+      answers: ["The Legend of Zelda", "Final Fantasy", "Skyrim", "Elden Ring"],
+      correctAnswer: "The Legend of Zelda",
+    },
+    {
+      topicId: "Entertainment",
+      question: "Who voices Gru in the 'Despicable Me' franchise?",
+      answers: ["Steve Carell", "Will Ferrell", "Jim Carrey", "Ben Stiller"],
+      correctAnswer: "Steve Carell",
+    },
+    {
+      topicId: "Entertainment",
+      question:
+        "Which reality show is known for the catchphrase 'You're fired'?",
+      answers: ["The Apprentice", "Shark Tank", "Survivor", "Big Brother"],
+      correctAnswer: "The Apprentice",
+    },
+    {
+      topicId: "Entertainment",
+      question:
+        "In which movie does Tom Hanks talk to a volleyball named Wilson?",
+      answers: [
+        "Cast Away",
+        "Forrest Gump",
+        "Saving Private Ryan",
+        "Captain Phillips",
+      ],
+      correctAnswer: "Cast Away",
+    },
+    {
+      topicId: "Entertainment",
+      question: "Which Disney movie features the song 'Circle of Life'?",
+      answers: ["The Lion King", "Aladdin", "Tarzan", "Hercules"],
+      correctAnswer: "The Lion King",
+    },
+    {
+      topicId: "Entertainment",
+      question: "What instrument does Lizzo famously play?",
+      answers: ["Flute", "Piano", "Guitar", "Saxophone"],
+      correctAnswer: "Flute",
+    },
+    {
+      topicId: "Entertainment",
+      question: "Which actor played the Joker in 'The Dark Knight'?",
+      answers: [
+        "Heath Ledger",
+        "Joaquin Phoenix",
+        "Jared Leto",
+        "Jack Nicholson",
+      ],
+      correctAnswer: "Heath Ledger",
+    },
+    {
+      topicId: "Entertainment",
+      question: "Which show is set in the fictional town of Hawkins, Indiana?",
+      answers: [
+        "Stranger Things",
+        "Riverdale",
+        "The Umbrella Academy",
+        "The X-Files",
+      ],
+      correctAnswer: "Stranger Things",
+    },
+    {
+      topicId: "Entertainment",
+      question: "Which pop star starred in the movie 'A Star Is Born'?",
+      answers: ["Lady Gaga", "Taylor Swift", "Ariana Grande", "Dua Lipa"],
+      correctAnswer: "Lady Gaga",
+    },
+    [
+      {
+        topicId: "Puzzles",
+        question:
+          "I speak without a mouth and hear without ears. I have no body, but I come alive with the wind. What am I?",
+        answers: ["Echo", "Shadow", "Ghost", "Whistle"],
+        correctAnswer: "Echo",
+      },
+      {
+        topicId: "Puzzles",
+        question:
+          "What comes once in a minute, twice in a moment, but never in a thousand years?",
+        answers: ["The letter M", "Time", "Blink", "Second"],
+        correctAnswer: "The letter M",
+      },
+      {
+        topicId: "Puzzles",
+        question:
+          "I’m tall when I’m young, and I’m short when I’m old. What am I?",
+        answers: ["Candle", "Pencil", "Tree", "Shadow"],
+        correctAnswer: "Candle",
+      },
+      {
+        topicId: "Puzzles",
+        question: "What can fill a room but takes up no space?",
+        answers: ["Light", "Air", "Sound", "Darkness"],
+        correctAnswer: "Light",
+      },
+      {
+        topicId: "Puzzles",
+        question: "What has keys but can’t open locks?",
+        answers: ["Piano", "Keyboard", "Map", "Locksmith"],
+        correctAnswer: "Piano",
+      },
+      {
+        topicId: "Puzzles",
+        question:
+          "The more you take, the more you leave behind. What are they?",
+        answers: ["Footsteps", "Memories", "Photos", "Words"],
+        correctAnswer: "Footsteps",
+      },
+      {
+        topicId: "Puzzles",
+        question: "What gets wetter as it dries?",
+        answers: ["Towel", "Sponge", "Raincoat", "Windshield"],
+        correctAnswer: "Towel",
+      },
+      {
+        topicId: "Puzzles",
+        question: "I have branches, but no fruit, trunk, or leaves. What am I?",
+        answers: ["Bank", "Tree", "River", "Family"],
+        correctAnswer: "Bank",
+      },
+      {
+        topicId: "Puzzles",
+        question:
+          "What can travel around the world while staying in the same corner?",
+        answers: ["Stamp", "Satellite", "Compass", "Sunlight"],
+        correctAnswer: "Stamp",
+      },
+      {
+        topicId: "Puzzles",
+        question: "What has a head, a tail, but no body?",
+        answers: ["Coin", "Snake", "Comet", "Hammer"],
+        correctAnswer: "Coin",
+      },
+      {
+        topicId: "Puzzles",
+        question: "What has many teeth but can’t bite?",
+        answers: ["Comb", "Zipper", "Saw", "Gears"],
+        correctAnswer: "Comb",
+      },
+      {
+        topicId: "Puzzles",
+        question: "What comes down but never goes up?",
+        answers: ["Rain", "Age", "Ball", "Temperature"],
+        correctAnswer: "Rain",
+      },
+      {
+        topicId: "Puzzles",
+        question:
+          "What belongs to you but other people use it more than you do?",
+        answers: ["Your name", "Your time", "Your phone", "Your money"],
+        correctAnswer: "Your name",
+      },
+      {
+        topicId: "Puzzles",
+        question: "What begins with T, ends with T, and has T in it?",
+        answers: ["Teapot", "Tent", "Ticket", "Toilet"],
+        correctAnswer: "Teapot",
+      },
+      {
+        topicId: "Puzzles",
+        question: "What word is spelled incorrectly in every dictionary?",
+        answers: ["Incorrectly", "Wrong", "Misspelled", "None"],
+        correctAnswer: "Incorrectly",
+      },
+      {
+        topicId: "Puzzles",
+        question: "Forward I am heavy, but backward I am not. What am I?",
+        answers: ["Ton", "Stone", "Train", "Elephant"],
+        correctAnswer: "Ton",
+      },
+      {
+        topicId: "Puzzles",
+        question:
+          "If you drop me, I’m sure to crack. But give me a smile, and I’ll always smile back. What am I?",
+        answers: ["Mirror", "Egg", "Face", "Glass"],
+        correctAnswer: "Mirror",
+      },
+      {
+        topicId: "Puzzles",
+        question:
+          "What runs, but never walks; has a bed, but never sleeps; has a mouth, but never eats?",
+        answers: ["River", "Clock", "Engine", "Storm"],
+        correctAnswer: "River",
+      },
+      {
+        topicId: "Puzzles",
+        question: "What can you catch, but not throw?",
+        answers: ["Cold", "Ball", "Virus", "Breath"],
+        correctAnswer: "Cold",
+      },
+      {
+        topicId: "Puzzles",
+        question: "What is full of holes but still holds water?",
+        answers: ["Sponge", "Net", "Bucket", "Strainer"],
+        correctAnswer: "Sponge",
+      },
+    ],
+  ],
 ];
 
 module.exports = { questionBank };

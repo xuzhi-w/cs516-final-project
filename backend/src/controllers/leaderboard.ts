@@ -1,30 +1,27 @@
 import { Request, Response } from "express";
-import {
-  createLeaderboardEntry,
-  getLeaderboardEntries,
-} from "../mode/leaderboard";
+import { createLeaderboardEntry, getLeaderboardEntries } from "../mode/leaderboard";
 
-export const createLeaderboardEntryController = async (
-  req: Request,
-  res: Response,
-) => {
+export const createLeaderboardEntryController = async (req: Request, res: Response) => {
   try {
-    const { userId, topicId, score, duration } = req.body;
+    const { userId, username, email, avatarUrl, topicId, score, duration } = req.body;
 
-    if (!userId || !topicId || score === undefined || duration === undefined) {
+    if (!userId || !username || !topicId || score === undefined || duration === undefined) {
       return res.status(400).json({ error: "Missing required fields" });
     }
 
     const entry = await createLeaderboardEntry({
       userId,
+      username,
+      email,
+      avatarUrl,
       topicId,
       score,
-      duration,
+      duration
     });
 
     res.status(201).json({
       message: "Leaderboard entry created",
-      entry,
+      entry
     });
   } catch (error) {
     console.error(error);
@@ -40,7 +37,7 @@ export const getLeaderboardController = async (req: Request, res: Response) => {
 
     res.status(200).json({
       message: "Leaderboard retrieved",
-      entries,
+      entries
     });
   } catch (error) {
     console.error(error);

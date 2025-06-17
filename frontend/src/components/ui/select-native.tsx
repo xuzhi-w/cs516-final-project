@@ -1,7 +1,7 @@
-import * as React from "react"
-import { ChevronDownIcon } from "lucide-react"
+import * as React from "react";
+import { ChevronDownIcon } from "lucide-react";
 
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
 
 const SelectNative = ({
   className,
@@ -17,7 +17,7 @@ const SelectNative = ({
           props.multiple
             ? "[&_option:checked]:bg-accent py-1 *:px-3 *:py-1"
             : "h-9 ps-3 pe-8",
-          className
+          className,
         )}
         {...props}
       >
@@ -29,7 +29,7 @@ const SelectNative = ({
         </span>
       )}
     </div>
-  )
-}
+  );
+};
 
-export { SelectNative }
+export { SelectNative };
