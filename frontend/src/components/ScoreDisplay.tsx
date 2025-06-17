@@ -82,7 +82,7 @@ const ScoreDisplay: React.FC<ScoreDisplayProps> = ({
   };
 
   const handleSaveToLeaderboard = async () => {
-    if (isSaved || createLeaderboardEntry.isLoading) return;
+    if (isSaved || createLeaderboardEntry.isPending) return;
 
     const user = getUserFromToken();
     if (!user) {
@@ -222,11 +222,11 @@ const ScoreDisplay: React.FC<ScoreDisplayProps> = ({
         {!isSaved && (
           <Button
             onClick={handleSaveToLeaderboard}
-            disabled={createLeaderboardEntry.isLoading}
+            disabled={createLeaderboardEntry.isPending}
             className="flex items-center gap-2 bg-gradient-to-r from-green-400 to-emerald-500 hover:from-green-500 hover:to-emerald-600 text-white font-bold rounded-full px-6 py-3 transition-all duration-200 hover:scale-105"
           >
             <SaveIcon className="w-5 h-5" />
-            {createLeaderboardEntry.isLoading
+            {createLeaderboardEntry.isPending
               ? "💾 Saving..."
               : "💾 Save Score!"}
           </Button>

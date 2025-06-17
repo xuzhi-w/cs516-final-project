@@ -31,21 +31,16 @@ const getTopicIcon = (topicId: string) => {
   }
 };
 
-const getTopicColor = (topicId: string) => {
-  switch (topicId) {
-    case "english_vocabulary":
-      return "from-emerald-400 to-teal-500";
-    case "geography":
-      return "from-blue-400 to-cyan-500";
-    case "science":
-      return "from-purple-400 to-indigo-500";
-    case "world_history":
-      return "from-orange-400 to-red-500";
-    case "math":
-      return "from-pink-400 to-rose-500";
-    default:
-      return "from-gray-400 to-gray-600";
-  }
+const getTopicColor = () => {
+  const colors = ["from-emerald-400 to-teal-500",
+    "from-blue-400 to-cyan-500",
+    "from-purple-400 to-indigo-500",
+    "from-orange-400 to-red-500",
+    "from-pink-400 to-rose-500",
+    "from-gray-400 to-gray-600"]
+
+  const randomIndex = Math.floor(Math.random() * colors.length);
+  return colors[randomIndex] || "from-gray-400 to-gray-600";
 };
 
 const TopicSelection: React.FC<TopicSelectionProps> = ({
@@ -71,7 +66,7 @@ const TopicSelection: React.FC<TopicSelectionProps> = ({
             onClick={() => onTopicSelect(topic)}
           >
             <div
-              className={`bg-gradient-to-r ${getTopicColor(topic.id)} rounded-2xl p-6 text-white transform transition-all ease-in duration-100 hover:scale-110 hover:shadow-2xl hover:rotate-1`}
+              className={`bg-gradient-to-r ${getTopicColor()} rounded-2xl p-6 text-white transform transition-all ease-in duration-100 hover:scale-110 hover:shadow-2xl hover:rotate-1`}
             >
               <div className="flex items-center justify-center mb-4">
                 <div className="bg-white/30 rounded-full p-4 backdrop-blur-sm">
