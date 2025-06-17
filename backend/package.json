@@ -8,9 +8,7 @@
     "start": "node dist/index.js",
     "dev2": "ts-node index.ts",
     "dev": "nodemon index.ts",
-    "prepare": "mkdir -p populate && cp src/functions/populate/* populate",
-    "post": "rm -rf ./populate",
-    "deploy": "npm run prepare && npm run build && serverless deploy && npm run post"
+    "deploy": "npm run build && serverless deploy"
   },
   "dependencies": {
     "@aws-sdk/client-dynamodb": "^3.828.0",

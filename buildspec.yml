@@ -4,7 +4,7 @@ phases:
   install:
     commands:
       - cd frontend
-      - npm install
+      - npm install --legacy-peer-deps
 
   build:
     commands:
