@@ -1,0 +1,16 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 20
+    commands:
+      - cd backend
+      - npm install -g serverless
+      - npm install --legacy-peer-deps
+
+  build:
+    commands:
+      - cd backend
+      - npm run build
+      - npm run deploy
