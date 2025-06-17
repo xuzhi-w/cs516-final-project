@@ -5,12 +5,22 @@ phases:
     runtime-versions:
       nodejs: 20
     commands:
+      - echo "Listing root directory to verify structure"
+      - ls -la
+      - echo "Changing into backend directory"
       - cd backend
+      - echo "Installing Serverless CLI globally"
       - npm install -g serverless
+      - echo "Installing project dependencies"
       - npm install --legacy-peer-deps
 
   build:
     commands:
-      - cd backend
+      - echo "Building the project"
       - npm run build
+      - echo "Deploying using Serverless"
       - npm run deploy
+
+artifacts:
+  files:
+    - '**/*'
